@@ -1,6 +1,6 @@
 services:
   kernel-watcher:
-    build: .
+    image: ghcr.io/naufalf22/kernel-watcher:latest
     restart: unless-stopped
     environment:
       GITHUB_TOKEN: ${GITHUB_TOKEN}
