@@ -1,0 +1,17 @@
+services:
+  kernel-watcher:
+    build: .
+    restart: unless-stopped
+    environment:
+      GITHUB_TOKEN: ${GITHUB_TOKEN}
+      GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}   # e.g. yourname/wsl-kernel
+      GITHUB_WORKFLOW_FILE: merge-and-build-kernel.yml
+      GITHUB_DISPATCH_REF: main
+      KERNEL_CHECK_MODE: branch
+      KERNEL_BRANCH: linux-rolling-stable
+      CHECK_INTERVAL_SECONDS: "86400"
+    volumes:
+      - kernel-watcher-state:/data
+
+volumes:
+  kernel-watcher-state:
