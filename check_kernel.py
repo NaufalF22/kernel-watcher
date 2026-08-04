@@ -31,7 +31,9 @@ STATE_FILE = os.environ.get("STATE_FILE", "/data/last_checked.txt")
 
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
 GITHUB_REPOSITORY = os.environ.get("GITHUB_REPOSITORY")  # "owner/repo"
-GITHUB_WORKFLOW_FILE = os.environ.get("GITHUB_WORKFLOW_FILE", "merge-and-build-kernel.yml")
+GITHUB_WORKFLOW_FILES = [
+    f.strip() for f in os.environ.get("GITHUB_WORKFLOW_FILE", "merge-and-build-kernel.yml").split(",") if f.strip()
+]
 GITHUB_DISPATCH_REF = os.environ.get("GITHUB_DISPATCH_REF", "main")
 
 CHECK_INTERVAL_SECONDS = int(os.environ.get("CHECK_INTERVAL_SECONDS", "86400"))  # 24h
